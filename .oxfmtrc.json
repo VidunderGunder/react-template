@@ -1,0 +1,11 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"useTabs": true,
+	"printWidth": 80,
+	"sortImports": true,
+	"sortTailwindcss": {
+		"stylesheet": "./src/styles/tailwind.css",
+		"functions": ["cn", "clsx", "cva", "twMerge", "twJoin"]
+	},
+	"ignorePatterns": ["src/api/schema.d.ts"]
+}

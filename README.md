@@ -1,4 +1,4 @@
-# React + Vite + Bun + Tailwind + Biome
+# React + Vite + Bun + Tailwind + Oxc
 
 My personal frontend starter
 
@@ -13,6 +13,29 @@ bun i
 ```
 bun dev
 ```
+
+## Type checking
+
+Neither oxlint nor `vite build` checks types on its own, so run TypeScript across both projects (`src` and `vite.config.ts`) with:
+
+```
+bun run tsc
+```
+
+## Linting and formatting
+
+Handled by [Oxc](https://oxc.rs/) — [oxlint](https://oxc.rs/docs/guide/usage/linter.html) for linting and [oxfmt](https://oxc.rs/docs/guide/usage/formatter.html) for formatting, configured in `.oxlintrc.json` and `.oxfmtrc.json`.
+
+oxfmt also sorts imports and Tailwind classes (including inside `cn(...)`), so no extra plugins are needed.
+
+```
+bun lint
+bun lint:fix
+bun format
+bun format:check
+```
+
+In VS Code, install the recommended [Oxc extension](https://marketplace.visualstudio.com/items?itemName=oxc.oxc-vscode) — format on save and `source.fixAll.oxc` are already wired up in `.vscode/settings.json`.
 
 ## Optional sync with OpenAPI (Swagger)
 
@@ -35,8 +58,8 @@ Adjust synchronization script and `fetchClient` to point to your OpenAPI spec be
 // src/api/index.tsx
 
 const fetchClient = createFetchClient<paths>({
-  // Update this
-  baseUrl: "http://localhost:8888/",
+	// Update this
+	baseUrl: "http://localhost:8888/",
 });
 ```
 

@@ -1,13 +1,14 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
 import "@/styles/reset.css";
 import "@/styles/tailwind.css";
 import "@/styles/styles.css";
-import { App } from "./App";
-import { QueryClient } from "@tanstack/react-query";
-import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+import { QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+
+import { App } from "./App";
 
 if (import.meta.env.DEV) {
 	import("react-scan").then(({ scan }) => {

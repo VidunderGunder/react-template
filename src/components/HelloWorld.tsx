@@ -1,6 +1,7 @@
-import type { ComponentProps } from "react";
-import { cn } from "@/styles/utils";
 import { motion } from "motion/react";
+import type { ComponentProps } from "react";
+
+import { cn } from "@/styles/utils";
 
 export type HelloWorldProps = {
 	//

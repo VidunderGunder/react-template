@@ -1,0 +1,44 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"plugins": [
+		"eslint",
+		"typescript",
+		"oxc",
+		"unicorn",
+		"react",
+		"jsx-a11y",
+		"import"
+	],
+	"categories": {
+		"correctness": "error",
+		"suspicious": "warn",
+		"perf": "warn"
+	},
+	"env": {
+		"browser": true,
+		"es2024": true
+	},
+	"rules": {
+		"no-unused-vars": [
+			"warn",
+			{
+				"argsIgnorePattern": "^_",
+				"varsIgnorePattern": "^_",
+				"caughtErrorsIgnorePattern": "^_"
+			}
+		],
+		"unicorn/no-array-for-each": "off",
+		"jsx-a11y/label-has-associated-control": "off",
+		"react/react-in-jsx-scope": "off",
+		"import/no-unassigned-import": ["warn", { "allow": ["**/*.css"] }]
+	},
+	"overrides": [
+		{
+			"files": ["**/*.d.ts"],
+			"rules": {
+				"import/no-unassigned-import": "off"
+			}
+		}
+	],
+	"ignorePatterns": ["dist", "src/api/schema.d.ts"]
+}
