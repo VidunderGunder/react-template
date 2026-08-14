@@ -1,4 +1,4 @@
-# React + Vite + Bun + Tailwind + Oxc
+# React Template
 
 My personal frontend starter
 
