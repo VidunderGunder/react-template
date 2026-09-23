@@ -56,30 +56,36 @@ export function enumToReadonlyArray<E extends Record<string, string | number>>(
 	return Object.freeze(Object.values(enumeration) as `${E[keyof E]}`[]);
 }
 
-const separators = [" ", "-"] as const satisfies string[];
-type Separator = (typeof separators)[number];
+const defaultSeparators = [" "] as const satisfies string[];
+type DefaultSeparator = (typeof defaultSeparators)[number];
 
 export type Trim<
 	T extends string,
+	Sep extends string = DefaultSeparator,
 	Acc extends string = "",
-> = T extends `${infer Char}${infer Rest}`
-	? Char extends Separator
-		? Trim<Rest, Acc>
-		: Trim<Rest, `${Acc}${Char}`>
-	: T extends ""
-		? Acc
-		: never;
+> = string extends T | Sep
+	? string
+	: T extends `${Sep}${infer Rest}`
+		? Trim<Rest, Sep, Acc>
+		: T extends `${infer Char}${infer Rest}`
+			? Trim<Rest, Sep, `${Acc}${Char}`>
+			: Acc;
 
-const trimRegex = new RegExp(
-	`[${separators.map((s) => s.replace(/[\\\]^-]/g, "\\$&")).join("")}]`,
-	"g",
-);
+const escapeRegex = (str: string) =>
+	str.replace(/[.*+?^${}()|[\]\\-]/g, "\\$&");
 
 /**
- * Removes every separator from a string, see `separators`
+ * Removes every separator from a string
  */
-export function trimTyped<T extends string>(str: T): Trim<T> {
-	return str.replace(trimRegex, "") as Trim<T>;
+export function trimTyped<
+	T extends string,
+	const S extends readonly string[] = typeof defaultSeparators,
+>(str: T, separators?: S): Trim<T, S[number]> {
+	const regex = new RegExp(
+		(separators ?? defaultSeparators).map(escapeRegex).join("|"),
+		"g",
+	);
+	return str.replace(regex, "") as Trim<T, S[number]>;
 }
 
 export function isRecord(value: unknown): value is Record<string, unknown> {
