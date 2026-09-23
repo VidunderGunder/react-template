@@ -79,5 +79,6 @@
 		"editor.defaultFormatter": "oxc.oxc-vscode",
 		"editor.formatOnSave": true
 	},
-	"htmltagwrap.tag": "div"
+	"htmltagwrap.tag": "div",
+	"js/ts.experimental.useTsgo": true
 }

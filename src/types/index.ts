@@ -23,16 +23,16 @@ export function uppercaseTyped<T extends string>(str: T): Uppercase<T> {
  *
  * ```ts
  * const enum ContextTag {
- *   DirectSales = "Direct Sales",
- *   Inhouse = "Inhouse",
- *   CustomerService = "Customer Service",
+ *   OptionA = "Direct A",
+ *   OptionB = "Option B",
+ *   OptionC = "Customer C",
  * }
  * ```
  *
  * These will be equivalent:
  *
  * ```ts
- * const a = ["Direct Sales", "Inhouse", "Customer Service"] as const;
+ * const a = ["Option A", "Option B", "Option C"] as const;
  * const b = enumToReadonlyArray(ContextTag);
  * ```
  *
@@ -44,10 +44,10 @@ export function uppercaseTyped<T extends string>(str: T): Uppercase<T> {
  *
  * ```ts
  * // using [] as const
- * type A = ["Direct Sales", "Inhouse", "Customer Service"]
+ * type A = ["Option A", "Option B", "Option C"]
  *
  * // using enumToReadonlyArray
- * type B = readonly ("Direct Sales" | "Inhouse" | "Customer Service")[]
+ * type B = readonly ("Option A" | "Option B" | "Option C")[]
  * ```
  */
 export function enumToReadonlyArray<E extends Record<string, string | number>>(
